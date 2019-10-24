@@ -1,0 +1,14 @@
+{
+  "name": "virtual-pet",
+  "version": "1.0.0",
+  "description": "Virtual PET challenge of week 7",
+  "main": "virtual-pet.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Rui",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
