@@ -10,7 +10,7 @@ function Pet (name) {
     this.hunger = 0;
     this.fitness = MAXIMUM_FITNESS;
     this.isAlive = function() {
-        if (this.age === MAXIMUM_AGE || this.fitness === MINIMUM_FITNESS || this.hunger === MAXIMUM_HUNGER) {
+        if (this.age >= MAXIMUM_AGE || this.fitness <= MINIMUM_FITNESS || this.hunger >= MAXIMUM_HUNGER) {
             return false
         } else {
             return true
@@ -20,8 +20,8 @@ function Pet (name) {
 
 Pet.prototype = {
     growUp() {
-        if (this.isAlive = false) {
-            return ('Your pet is no longer alive.')
+        if (!this.isAlive()) {
+            throw new Error ('Your pet is no longer alive.')
         } else {
             this.age += 1;
             this.hunger += 5;
@@ -30,24 +30,32 @@ Pet.prototype = {
     },
 
     walk() {
-        if (this.fitness > 6) {
-            this.fitness = MAXIMUM_FITNESS;
+        if (!this.isAlive()) {
+            throw new Error ('Your pet is no longer alive.')
         } else {
-            this.fitness += 4;
+            if (this.fitness > 6) {
+                this.fitness = MAXIMUM_FITNESS;
+            } else {
+                this.fitness += 4;
+            }
         }
     },
 
     feed() {
-        if (this.hunger <= 3) {
-            this.hunger = MINIMUM_HUNGER;
+        if (!this.isAlive()) {
+            throw new Error ('Your pet is no longer alive.')
         } else {
-            this.hunger -=3;
+            if (this.hunger <= 3) {
+                this.hunger = MINIMUM_HUNGER;
+            } else {
+                this.hunger -=3;
+            }
         }
     },
 
     checkUp() {
-        if (this.isAlive = false) {
-            return ('Your pet is no longer alive.')
+        if (!this.isAlive()) {
+            throw new Error ('Your pet is no longer alive.')
         } else {        
             if (this.fitness <= 3 && this.hunger >= 5) {
                 return ('I am hungry and I need a walk!')
@@ -60,6 +68,6 @@ Pet.prototype = {
             }
         }
     }
-}
+};
 
 module.exports = Pet
