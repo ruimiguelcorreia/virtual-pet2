@@ -9,16 +9,19 @@ function Pet (name) {
     this.age = 0;
     this.hunger = 0;
     this.fitness = MAXIMUM_FITNESS;
-    this.isAlive = function() {
+    this.children = [];
+};
+
+Pet.prototype = {
+
+    isAlive() {
         if (this.age >= MAXIMUM_AGE || this.fitness <= MINIMUM_FITNESS || this.hunger >= MAXIMUM_HUNGER) {
             return false
         } else {
             return true
         }
-    };
-};
-
-Pet.prototype = {
+    },
+    
     growUp() {
         if (!this.isAlive()) {
             throw new Error ('Your pet is no longer alive.')
@@ -67,6 +70,10 @@ Pet.prototype = {
                 return ('I feel great!')
             }
         }
+    },
+
+    haveBaby(pet) {
+        this.children.push(pet);
     }
 };
 

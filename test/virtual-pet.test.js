@@ -105,4 +105,11 @@ describe('create a new object with a set of properties', () => {
         expect(() => pet.feed()).toThrow('Your pet is no longer alive.');
         expect(() => pet.checkUp()).toThrow('Your pet is no longer alive.');
     });
+
+    test('create a new object with the same properties as the parent', () => {
+        let newPet = new Pet('kid')
+        pet.haveBaby(newPet);
+        expect(pet.children.length).toBe(1);
+        expect(pet.children[0]).toBe(newPet);
+    });
 });
